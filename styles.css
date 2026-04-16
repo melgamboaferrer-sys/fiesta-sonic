@@ -1,0 +1,284 @@
+body {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  font-family: Arial;
+  background: linear-gradient(#0b3d91, #1e90ff);
+}
+
+/* 📖 LIBRO */
+.book {
+  position: relative;
+  display: flex;
+  width: 900px;
+  height: 540px;
+  margin: auto;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 15px;
+  box-shadow: 0 25px 80px rgba(0,0,0,0.5);
+}
+
+.page {
+  width: 50%;
+  padding: 30px;
+  position: relative;
+}
+
+/* IZQUIERDA */
+.left {
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sonic {
+  width: 260px;
+  animation: bounce 1.3s infinite;
+}
+
+@keyframes bounce {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+/* ========================= */
+/* 🔥 DERECHA (CORREGIDA) */
+/* ========================= */
+.right {
+  background: #f5f7ff;
+  overflow: hidden;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+}
+
+/* TEXTO PERFECTAMENTE CENTRADO */
+.content {
+  position: relative;
+  z-index: 5;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  width: 100%;
+  height: 100%;
+
+  gap: 8px; /* espacio entre textos */
+}
+
+/* 🟡 ANILLOS FONDO */
+.rings-bg {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.ring {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 6px solid gold;
+  box-shadow: 0 0 10px rgba(255,215,0,0.8);
+  animation: fallRing linear infinite;
+}
+
+@keyframes fallRing {
+  0% { transform: translateY(-100px) rotate(0deg); }
+  100% { transform: translateY(110vh) rotate(360deg); }
+}
+
+/* 🎈 GLOBOS */
+.balloons-layer {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.balloon {
+  position: absolute;
+  width: 40px;
+  height: 50px;
+  border-radius: 50%;
+  top: -80px;
+  animation: fallBalloon linear infinite;
+}
+
+@keyframes fallBalloon {
+  0% {
+    transform: translateY(-120px);
+    opacity: 0;
+  }
+  10% { opacity: 1; }
+  100% {
+    transform: translateY(110vh);
+  }
+}
+
+/* 🎊 CONFETI */
+.confetti-layer {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.confetti {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  top: -10px;
+  animation: confettiFall linear infinite;
+}
+
+@keyframes confettiFall {
+  0% { transform: translateY(-100px) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  100% { transform: translateY(110vh) rotate(720deg); }
+}
+
+/* 💎 CHAOS EMERALDS */
+.chaos-layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.chaos {
+  position: absolute;
+  width: 18px;
+  height: 28px;
+  clip-path: polygon(50% 0%,90% 25%,100% 60%,50% 100%,0% 60%,10% 25%);
+  box-shadow: 0 0 15px cyan;
+  animation: fallChaos linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes fallChaos {
+  0% { transform: translateY(-80px) rotate(0deg); }
+  100% { transform: translateY(600px) rotate(360deg); }
+}
+
+button {
+  margin-top: 15px;
+  padding: 12px 24px;
+
+  border: 2px solid #00e5ff;
+  background: linear-gradient(145deg, #1e90ff, #0b3d91);
+
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+
+  border-radius: 12px;
+  cursor: pointer;
+
+  box-shadow:
+    0 0 10px rgba(0, 229, 255, 0.6),
+    0 0 20px rgba(0, 229, 255, 0.3);
+
+  transition: all 0.2s ease-in-out;
+  letter-spacing: 1px;
+}
+
+/* 🌀 hover estilo “power up” */
+button:hover {
+  transform: scale(1.08);
+  background: linear-gradient(145deg, #00e5ff, #1e90ff);
+
+  box-shadow:
+    0 0 15px #00e5ff,
+    0 0 30px #00e5ff,
+    0 0 40px rgba(0, 229, 255, 0.8);
+}
+
+/* ⚡ click estilo impacto */
+button:active {
+  transform: scale(0.95);
+  box-shadow: 0 0 5px #00e5ff;
+}
+
+@media (max-width: 768px) {
+
+  body {
+    overflow: hidden;
+  }
+
+  /* 📖 mantener formato cuaderno */
+  .book {
+    width: 95vw;
+    height: 65vh;
+
+    transform: translate(-50%, -50%) scale(0.9);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    flex-direction: row; /* 👈 NO se apila */
+  }
+
+  .page {
+    width: 50%;
+    height: 100%;
+    padding: 15px;
+  }
+
+  /* 📝 texto más compacto */
+  .content {
+    gap: 6px;
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 18px;
+  }
+
+  p {
+    font-size: 13px;
+    margin: 4px 0;
+  }
+
+  /* 🎮 botón más tocable */
+  button {
+    padding: 10px 18px;
+    font-size: 13px;
+    width: 90%;
+  }
+
+  /* 🟡 reducir efectos para rendimiento móvil */
+  .ring {
+    width: 22px;
+    height: 22px;
+    border-width: 4px;
+  }
+
+  .chaos {
+    width: 14px;
+    height: 20px;
+  }
+
+  .balloon {
+    width: 28px;
+    height: 38px;
+  }
+
+  .confetti {
+    width: 5px;
+    height: 5px;
+  }
+}
